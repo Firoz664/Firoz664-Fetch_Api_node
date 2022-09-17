@@ -47,9 +47,10 @@ const PORT=8000;
 //         }
 //     }
 //     getComment()
-app.get("/",async(req,res)=>{
+app.get("/api/data",async(req,res)=>{
     const mypost= await fetch ("https://jsonplaceholder.typicode.com/comments")
     const resData=await mypost.json()
+    console.log(resData)
     for(let i=0;i<resData.length;i++){
       const commentData = new Post({
             post_Id:resData[i]['postId'],
@@ -63,6 +64,7 @@ app.get("/",async(req,res)=>{
     }
     res.status(200).json(resData)
 })
+
 
 
 app.listen(PORT,(req,res)=>{
